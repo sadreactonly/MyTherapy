@@ -9,7 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Common.Models;
+using MyTherapy.Models;
 
 namespace MyTherapy.Activities
 {
@@ -44,7 +44,7 @@ namespace MyTherapy.Activities
 
             Android.Support.V7.App.AlertDialog.Builder alert = new Android.Support.V7.App.AlertDialog.Builder(this);
             DailyTherapy item = adapter.GetFromItem(e.Position);
-            DailyTherapy dbsb = (DailyTherapy) item.Clone();
+             
 
 
             alert.SetTitle($"Delete { item.Date.ToShortDateString()} therapy");

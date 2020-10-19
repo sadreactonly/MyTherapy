@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Android.App;
 using Android.OS;
 using Android.Widget;
-using Common.Models;
+using MyTherapy.Models;
 
 namespace MyTherapy
 {
@@ -136,6 +136,7 @@ namespace MyTherapy
 			}
 
 			listView.Adapter = new ArrayAdapter<float>(this, Android.Resource.Layout.SimpleListItem1, dosage);
+
 		}
 
 		#endregion

@@ -12,7 +12,7 @@ using Android.Support.Design.Button;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using Common.Models;
+using MyTherapy.Models;
 using Newtonsoft.Json;
 using MyTherapy.Activities;
 
@@ -25,6 +25,7 @@ namespace MyTherapy
         MaterialButton takeTherapyButton;
         TextView lastINR;
         TextView nextAppointment;
+        TextView daysLeftTextView;
 
         private AppManager appManager; 
 
@@ -36,14 +37,12 @@ namespace MyTherapy
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
-
-            MaterialButton connect = FindViewById<MaterialButton>(Resource.Id.button1);
-			connect.Click += Connect_Click;
            
             todayTherapyText = FindViewById<TextView>(Resource.Id.textView2);
             takeTherapyButton = FindViewById<MaterialButton>(Resource.Id.materialButton1);
             lastINR = FindViewById<TextView>(Resource.Id.textView5);
             nextAppointment = FindViewById<TextView>(Resource.Id.textView6);
+            daysLeftTextView = FindViewById<TextView>(Resource.Id.daysLeft);
 
             takeTherapyButton.Click += TakeTherapyButton_Click;
 
@@ -63,42 +62,6 @@ namespace MyTherapy
             todayTherapy.IsTaken = true;
             appManager.TakeTherapy(todayTherapy);
         }
-
-        private void Connect_Click(object sender, EventArgs e)
-		{
-			Serialize(appManager.GetTherapyChanges());
-		}
-		
-        private void Serialize(List<TherapyChanges> therapies)
-		{
-
-			try
-			{
-				TcpClient tcpClient = new TcpClient();
-				tcpClient.Connect("192.168.0.132", 11000);
-
-				Stream stm = tcpClient.GetStream();
-                SetChanges(therapies);
-                string output = JsonConvert.SerializeObject(therapies);
-                byte[] dataBytes = Encoding.Default.GetBytes(output);
-
-                stm.Write(dataBytes, 0, dataBytes.Length);
-                tcpClient.Close();
-                appManager.DeleteTherpyChanges();
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine("Error..... " + e.StackTrace);
-			}
-		}
-
-		private void SetChanges(List<TherapyChanges> therapies)
-		{
-			foreach(var tmp in therapies)
-			{
-                tmp.Therapy = appManager.GetTherapyById(tmp.TherapyGuid);
-            }
-		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
         {
@@ -120,20 +83,23 @@ namespace MyTherapy
 		        case Resource.Id.action_therapies:
 			        StartActivity(typeof(AllTherapiesActivity));
 			        break;
-	        }
+                case Resource.Id.action_pills:
+                    StartActivity(typeof(PillsActivity));
+                    break;
+            }
 
             return base.OnOptionsItemSelected(item);
         }
 
         protected override void OnResume()
         {
-			appManager.SetAllData(out string lastInrText, out string nextAppointmentText, out string todayTherapyTextText, out bool takeTherapyButtonEnabled);
+			appManager.SetAllData(out string lastInrText, out string nextAppointmentText, out string todayTherapyTextText, out bool takeTherapyButtonEnabled, out string daysLeft);
 
 			lastINR.Text = lastInrText;
             nextAppointment.Text = nextAppointmentText;
             todayTherapyText.Text = todayTherapyTextText;
             takeTherapyButton.Enabled = !takeTherapyButtonEnabled;
-
+            daysLeftTextView.Text = daysLeft;
             base.OnResume();
         }
 

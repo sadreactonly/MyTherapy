@@ -49,12 +49,10 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/cardView2">
-        <ListView  
-		android:minWidth="@dimen/min_dim" 
-		android:minHeight="@dimen/min_dim"  
-		android:layout_width="match_parent"  
-		android:layout_height="wrap_content"  
-		android:id="@+id/listView"/>  
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
       <LinearLayout  
         android:id="@+id/linearLayout2"
@@ -80,6 +78,14 @@
             android:text="@string/save"   
             android:layout_weight="1"/>  
     </LinearLayout>
+             <ListView  
+		android:minWidth="@dimen/min_dim" 
+		android:minHeight="@dimen/min_dim"  
+        android:layout_below="@+id/linearLayout2"
+		android:layout_width="match_parent"  
+		android:layout_height="wrap_content"  
+		android:id="@+id/listView"/>  
+      </RelativeLayout>
 </android.support.design.card.MaterialCardView>
 
 </LinearLayout>  

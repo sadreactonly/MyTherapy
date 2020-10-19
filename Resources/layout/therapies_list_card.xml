@@ -28,7 +28,6 @@
 				android:id="@+id/textView3" />
 			<ListView 
 				android:id="@+id/mainlistview" 
-				android:layout_below="@id/button1"
 				android:layout_height="match_parent" 
 				android:layout_width="match_parent">
 			</ListView>  

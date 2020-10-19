@@ -68,20 +68,25 @@
     <Compile Include="Activities\AllTeraphiesActivity.cs" />
     <Compile Include="Activities\AppWidget.cs" />
     <Compile Include="Activities\InrActivity.cs" />
+    <Compile Include="Activities\PillsActivity.cs" />
     <Compile Include="Adapters\DoctorAppointmentsAdapter.cs" />
+    <Compile Include="Adapters\PillsAdapter.cs" />
     <Compile Include="AppManager.cs" />
-    <Compile Include="ChangesDatabase.cs" />
-    <Compile Include="DoctorAppointmentDatabase.cs" />
     <Compile Include="Activities\MainActivity.cs" />
-    <Compile Include="Models\AppointmentChanges.cs" />
+    <Compile Include="Helpers\HelpersMethods.cs" />
+    <Compile Include="Repositories\Common\IRepository.cs" />
     <Compile Include="Models\DailyTherapy.cs" />
     <Compile Include="Models\DoctorAppointment.cs" />
-    <Compile Include="ObjectExtensions.cs" />
+    <Compile Include="Models\Pills.cs" />
+    <Compile Include="Helpers\ObjectExtensions.cs" />
+    <Compile Include="Repositories\DailyTherapyRepository.cs" />
+    <Compile Include="Repositories\DoctorAppointmentRepository.cs" />
+    <Compile Include="Repositories\PillsRepository.cs" />
+    <Compile Include="Repositories\Common\Repository.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Activities\SchemaActivity.cs" />
     <Compile Include="Adapters\SchemaAdapter.cs" />
-    <Compile Include="TherapyDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -119,9 +124,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
@@ -191,6 +194,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\hand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\pills_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

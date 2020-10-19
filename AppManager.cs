@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Android.Content;
-using Common.Models;
-using MyAppointment;
+using MyTherapy.Models;
+using MyTherapy.Helpers;
+using MyTherapy.Repositories;
 
 namespace MyTherapy
 {
 	public class AppManager
 	{
-		private ChangesDatabase changesDatabase = ChangesDatabase.Instance;
-		private DoctorAppointmentDatabase appointmentDatabase = DoctorAppointmentDatabase.Instance;
-		private TherapyDatabase therapyDatabase = TherapyDatabase.Instance;
+		private DoctorAppointmentRepository appointmentRepository = DoctorAppointmentRepository.Instance;
+		private DailyTherapyRepository therapyRepository = DailyTherapyRepository.Instance;
+		private PillsRepository pillsRepository = PillsRepository.Instance;
+
 		private Context appContext;
 
 		public event EventHandler TherapyTaken;
@@ -27,93 +29,35 @@ namespace MyTherapy
 			appContext = context;
 		}
 
-		public void AddAppointmentChange(AppointmentChanges appointmentChanges)
-		{
-			changesDatabase.AddAppointmentChange(appointmentChanges);
-		}
+	
+		public void AddAppointments(DoctorAppointment appointments) => appointmentRepository.Insert(appointments);
 
-		public List<AppointmentChanges> GetAppointmentChanges()
-		{
-			return changesDatabase.GetAppointmentsChanges();
-		}
+		public List<DoctorAppointment> GetAppointments() => appointmentRepository.Get(orderBy: x => x.Date);
+		
+		public List<DailyTherapy> GetTherapies() => therapyRepository.Get();
 
-		public void AddTherapyChange(TherapyChanges therapyChanges)
-		{
-			changesDatabase.AddTherapyChange(therapyChanges);
-		}
+		public void AddTherapies(List<DailyTherapy> therapies) => therapyRepository.InsertAll(therapies);
 
-		public List<TherapyChanges> GetTherapyChanges()
-		{
-			return changesDatabase.GetTherapyChanges();
-		}
+		public void DeleteTherapy(DailyTherapy item) => therapyRepository.Delete(item);
 
-		public void AddAppointments(DoctorAppointment appointments)
+		public DailyTherapy GetTodayTherapy() => therapyRepository.Get(predicate: x => x.Date == DateTime.Now.Date);
+
+		public void TakeTherapy(DailyTherapy todayTherapy)
 		{
-			appointmentDatabase.AddAppointment(appointments);
+			therapyRepository.Update(todayTherapy);
+			TherapyTaken?.Invoke(this,null);
 			
 		}
 
-		public List<DoctorAppointment> GetAppointments()
+		public void SetAllData(out string lastInrText, out string nextAppointmentText, out string todayTherapyTextText, out bool takeTherapyButtonEnabled, out string daysLeft)
 		{
-			return appointmentDatabase.GetAppointments();
-		}
-
-		public List<DailyTherapy> GetTherapies()
-		{
-			return therapyDatabase.GetTherapies();
-		}
-
-		public void AddTherapies(List<DailyTherapy> therapies)
-		{
-			therapyDatabase.AddTherapySchema(therapies);
-			foreach (var tmp in therapies)
-			{
-				var tmpCh = new TherapyChanges()
-				{
-					Operation = Operation.Add,
-					TherapyGuid = tmp.Guid,
-					Therapy = tmp
-				};
-
-				AddTherapyChange(tmpCh);
-
-			}
-		}
-
-		internal void DeleteTherapy(DailyTherapy item)
-		{
-			DailyTherapy clonedObject = item.CloneObject() as DailyTherapy;
-
-			AddTherapyChange(new TherapyChanges(Operation.Delete, clonedObject.Guid));
-			therapyDatabase.DeleteTherapy(item);
-		}
-
-		public DailyTherapy GetTodayTherapy()
-		{
-			return GetTherapies().FirstOrDefault(x => x.Date == DateTime.Now.Date);
-		}
-
-		internal void TakeTherapy(DailyTherapy todayTherapy)
-		{
-			therapyDatabase.UpdateTherapy(todayTherapy);
-			TherapyTaken?.Invoke(this,null);
-			var x = new TherapyChanges
-			{
-				Operation = Operation.Update,
-				TherapyGuid = todayTherapy.Guid
-			};
-			AddTherapyChange(x);
-		}
-
-		internal void SetAllData(out string lastInrText, out string nextAppointmentText, out string todayTherapyTextText, out bool takeTherapyButtonEnabled)
-		{
-			var lastInr = appointmentDatabase.GetLastAppointment().INR;
+			var lastInr = appointmentRepository.GetLastAppointment().INR;
 			if (lastInr != null)
 				lastInrText = lastInr.ToString();
 			else
 				lastInrText = appContext.Resources.GetString(Resource.String.not_set);
 
-			var nextApp = appointmentDatabase.GetNextAppointment().Date;
+			var nextApp = appointmentRepository.GetNextAppointment().Date;
 			if(nextApp.Equals(DateTime.MinValue))
 				nextAppointmentText = appContext.Resources.GetString(Resource.String.not_set);
 			else
@@ -122,16 +66,18 @@ namespace MyTherapy
 			var todayTherapy = GetTodayTherapy();
 			todayTherapyTextText = todayTherapy !=null ? todayTherapy.Dose.ToString(CultureInfo.InvariantCulture): appContext.Resources.GetString(Resource.String.not_set);
 			takeTherapyButtonEnabled = todayTherapy != null && todayTherapy.IsTaken;
+
+			var pills = GetLastAddedPills();
+			daysLeft = pills.CalculatePillsLeft(GetTherapies()).ToString();
 		}
 
-		internal DailyTherapy GetTherapyById(Guid id)
+		public Pills GetLastAddedPills()
 		{
-			return therapyDatabase.GetTherapy(id);
-		}
+			
+			var tmp = pillsRepository.Get();
+			tmp.Reverse();
+			return tmp.FirstOrDefault();
 
-		internal void DeleteTherpyChanges()
-		{
-			changesDatabase.ClearTherapyChanges();
 		}
 	}
 }

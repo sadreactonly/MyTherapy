@@ -3,47 +3,24 @@ using System.ComponentModel;
 using Newtonsoft.Json;
 using SQLite;
 
-namespace Common.Models
+namespace MyTherapy.Models
 {
 	[Table(nameof(DoctorAppointment))]
-	public class DoctorAppointment:INotifyPropertyChanged
+	public class DoctorAppointment
 	{
-		[JsonProperty(PropertyName = "id")]
 		[PrimaryKey, AutoIncrement]
 		public int Id { get; set; }
 
-		private double? inr;
-		private DateTime date;
 		/// <summary>
 		/// Gets or sets value of INR.
 		/// </summary>
-		public double? INR {
-			get => inr;
-			set
-			{
-				inr = value;
-				OnPropertyChanged(nameof(INR));
-			} 
-		}
+		public double? INR { get; set; }
 
 		/// <summary>
 		/// Gets or sets date of doctors appointment.
 		/// </summary>
-		public DateTime Date
-		{
-			get => date;
-			set
-			{
-				date = value;
-				OnPropertyChanged(nameof(Date));
-			}
-		}
+		public DateTime Date { get; set; }
 
-		public event PropertyChangedEventHandler PropertyChanged;
-		private void OnPropertyChanged(string propertyName)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
-
+		
 	}
 }

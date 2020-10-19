@@ -5,39 +5,38 @@ using Android.App;
 using Android.OS;
 using Android.Support.Design.Button;
 using Android.Widget;
-using MyTherapy.Models;
 using MyTherapy.Adapters;
+using MyTherapy.Models;
 using static Android.Widget.AdapterView;
-using MyTherapy.Repositories;
 
 namespace MyTherapy
 {
-	[Activity(Label = "InrActivity")]
-	public class InrActivity : Activity
+	[Activity(Label = "PillsActivity")]
+	public class PillsActivity : Activity
 	{
 		private EditText inrEditText;
 		private MaterialButton saveButton;
 		private MaterialButton inrDateButton;
 		private DateTime date;
-		private DoctorAppointmentRepository db = DoctorAppointmentRepository.Instance;
+		private PillsRepository db;
 		private ListView appointmentsListView;
-		private DoctorAppointmentsAdapter adapter;
+		private PillsAdapter adapter;
 		private AlertDialog.Builder ad;
 		private EditText et;
-		List<DoctorAppointment> allTherapies;
+		List<Pills> allPills;
 
-		protected override void OnCreate(Bundle savedInstanceState)
+		protected  override void OnCreate(Bundle savedInstanceState)
 		{
 			SetContentView(Resource.Layout.inr_layout);
 			base.OnCreate(savedInstanceState);
-
+			db = new PillsRepository();
 			inrEditText = FindViewById<EditText>(Resource.Id.editText1);
 			inrDateButton = FindViewById<MaterialButton>(Resource.Id.materialButton1);
 			saveButton = FindViewById<MaterialButton>(Resource.Id.materialButton2);
 			appointmentsListView = FindViewById<ListView>(Resource.Id.listView1);
-			appointmentsListView.ItemLongClick += AppointmentsListView_ItemLongClick;
-			allTherapies = db.Get();
-			adapter = new DoctorAppointmentsAdapter(this, allTherapies);
+			appointmentsListView.ItemLongClick += PillsListView_ItemLongClick;
+			allPills =  db.Get();
+			adapter = new PillsAdapter(this, allPills);
 			appointmentsListView.Adapter = adapter;
 
 
@@ -49,15 +48,15 @@ namespace MyTherapy
 
 		}
 
-		private void AppointmentsListView_ItemLongClick(object sender, ItemLongClickEventArgs e)
+		private void PillsListView_ItemLongClick(object sender, ItemLongClickEventArgs e)
 		{
-			DoctorAppointment myitem = allTherapies[e.Position];
+			Pills myitem = allPills[e.Position];
 
 			LinearLayout l = new LinearLayout(this);
 
 			et = new EditText(this)
 			{
-				Text = myitem.INR?.ToString()
+				Text = myitem.Quantity.ToString()
 			};
 
 
@@ -65,12 +64,12 @@ namespace MyTherapy
 			l.AddView(et);
 
 			ad = new AlertDialog.Builder(this);
-			ad.SetTitle("Update INR value");
+			ad.SetTitle("Update Quantity value");
 			ad.SetView(l); // <----
 			ad.SetPositiveButton("Update", (senderAlert, args) =>
 			{
 				//CreateScheme();
-				UpdateINR(e.Position, et.Text);
+				UpdateQuantity(e.Position, et.Text);
 				//Finish();
 			});
 
@@ -84,36 +83,36 @@ namespace MyTherapy
 
 		}
 
-		private void UpdateINR(int position, string text)
+		private  void UpdateQuantity(int position, string text)
 		{
-			
-			allTherapies[position].INR = double.Parse(text);
-			db.Update(allTherapies[position]);
+
+			allPills[position].Quantity = int.Parse(text);
+			db.Update(allPills[position]);
 
 			adapter.NotifyDataSetChanged();
-
 		}
 
-		private void SaveButton_Click(object sender, EventArgs e)
+		private  void SaveButton_Click(object sender, EventArgs e)
 		{
 			if (!inrEditText.Text.Any()) return;
-			var inr = float.Parse(inrEditText.Text);
-			var appointment = new DoctorAppointment()
+			var quantity = int.Parse(inrEditText.Text);
+			var pills = new Pills()
 			{
-				INR = inr,
+				Quantity = quantity,
 				Date = date
 			};
-			db.Insert(appointment);
-			allTherapies.Add(appointment);
+			db.Insert(pills);
+			allPills.Add(pills);
 			adapter.NotifyDataSetChanged();
 
 		}
-		
+
 		private void InrDateButton_Click(object sender, EventArgs e)
 		{
 			DatePickerDialog datePickerDialog = new DatePickerDialog(this);
 			datePickerDialog.DateSet += DatePickerDialog_DateSet;
 			datePickerDialog.Show();
+
 		}
 
 		private void DatePickerDialog_DateSet(object sender, DatePickerDialog.DateSetEventArgs e)

@@ -16,4 +16,9 @@
 	    android:orderInCategory="100"
 	    android:title="@string/action_schema"
 	    app:showAsAction="never" />
+	<item
+	    android:id="@+id/action_pills"
+	    android:orderInCategory="100"
+	    android:title="@string/pills_management"
+	    app:showAsAction="never" />
 </menu>

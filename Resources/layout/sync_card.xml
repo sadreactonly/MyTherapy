@@ -32,16 +32,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/textView7" />
+                android:id="@+id/daysLeft" />
 
-			<android.support.design.button.MaterialButton
-				android:text="@string/sync"
-				android:gravity="center"
-				android:layout_marginRight="25px"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:id="@+id/button1" />
 		</LinearLayout>
 	</android.support.design.card.MaterialCardView>
 </LinearLayout>

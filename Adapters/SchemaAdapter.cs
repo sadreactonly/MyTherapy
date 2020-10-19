@@ -2,7 +2,7 @@
 using Android.App;
 using Android.Views;
 using Android.Widget;
-using Common.Models;
+using MyTherapy.Models;
 
 namespace MyTherapy
 {
