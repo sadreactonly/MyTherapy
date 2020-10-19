@@ -44,6 +44,7 @@ namespace MyTherapy
 
 		public void TakeTherapy(DailyTherapy todayTherapy)
 		{
+			todayTherapy.IsTaken = true;
 			therapyRepository.Update(todayTherapy);
 			TherapyTaken?.Invoke(this,null);
 			
@@ -69,6 +70,11 @@ namespace MyTherapy
 
 			var pills = GetLastAddedPills();
 			daysLeft = pills.CalculatePillsLeft(GetTherapies()).ToString();
+		}
+
+		public void UpdateTherapy(DailyTherapy item)
+		{
+			therapyRepository.Update(item);
 		}
 
 		public Pills GetLastAddedPills()

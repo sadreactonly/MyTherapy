@@ -81,7 +81,6 @@ namespace MyTherapy
 					var therapy = appManager.GetTodayTherapy();
 					if(therapy!=null)
 					{
-						therapy.IsTaken = true;
 						appManager.TakeTherapy(therapy);
 					}
 					

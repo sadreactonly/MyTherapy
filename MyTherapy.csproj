@@ -65,7 +65,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activities\AllTeraphiesActivity.cs" />
+    <Compile Include="Activities\AllTherapiesActivity.cs" />
     <Compile Include="Activities\AppWidget.cs" />
     <Compile Include="Activities\InrActivity.cs" />
     <Compile Include="Activities\PillsActivity.cs" />

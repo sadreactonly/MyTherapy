@@ -59,7 +59,6 @@ namespace MyTherapy
 		private void TakeTherapyButton_Click(object sender, EventArgs e)
 		{
             var todayTherapy = appManager.GetTodayTherapy();
-            todayTherapy.IsTaken = true;
             appManager.TakeTherapy(todayTherapy);
         }
 

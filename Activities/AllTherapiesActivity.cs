@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
+﻿using Android.App;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using MyTherapy.Models;
+using System.Collections.Generic;
 
 namespace MyTherapy.Activities
 {
@@ -20,8 +13,9 @@ namespace MyTherapy.Activities
 
         ListView listView;
 		SchemaAdapter adapter;
+        List<DailyTherapy> allTherapies;
 
-		protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
 		{
 			SetContentView(Resource.Layout.therapies_list_card);
 			base.OnCreate(savedInstanceState);
@@ -34,7 +28,7 @@ namespace MyTherapy.Activities
 		protected override void OnResume()
 		{
 			base.OnResume();
-            var allTherapies = appManager.GetTherapies();
+            allTherapies = appManager.GetTherapies();
             adapter = new SchemaAdapter(this, allTherapies);
             listView.Adapter = adapter;
 
@@ -47,19 +41,26 @@ namespace MyTherapy.Activities
              
 
 
-            alert.SetTitle($"Delete { item.Date.ToShortDateString()} therapy");
-            alert.SetMessage("Do you want to delete item?");
+            alert.SetTitle($"{ item.Date.ToShortDateString()} therapy");
+            alert.SetMessage("Manage selected therapy");
 
-            alert.SetPositiveButton("Yes", (senderAlert, args) =>
+            alert.SetPositiveButton("Delete", (senderAlert, args) =>
             {
                 appManager.DeleteTherapy(item);
                 adapter.RemoveItemAt(e.Position);
                 adapter.NotifyDataSetChanged();
             });
 
-            alert.SetNegativeButton("No", (senderAlert, args) =>
+            alert.SetNegativeButton("Cancel", (senderAlert, args) =>
             {
 
+            });
+
+            alert.SetNeutralButton("Take/Untake", (senderAlert, args) =>
+            {
+                allTherapies[e.Position].IsTaken = !item.IsTaken;
+                appManager.UpdateTherapy(item);
+                adapter.NotifyDataSetChanged();
             });
 
             Dialog dialog = alert.Create();
