@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text="1."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/icon_margin"
+        android:textSize="@dimen/abc_text_size_display_1_material"
+        android:minWidth="@dimen/min_dim"
+        android:minHeight="25px"
+        android:id="@+id/textView1" />
+    <RelativeLayout
+        android:minWidth="@dimen/min_dim"
+        android:minHeight="@dimen/min_dim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textView1"
+        android:id="@+id/relativeLayout1" >
+        <TextView
+            android:text="Apoteka Jankovic"
+            android:textSize="@dimen/abc_text_size_headline_material"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2" />
+        <TextView
+            android:text="Bulevar oslobodjenja 48, Novi Sad"
+            android:layout_below="@+id/textView2"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3" />
+
+        </RelativeLayout>>
+    
+</RelativeLayout>

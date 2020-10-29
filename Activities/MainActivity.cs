@@ -26,7 +26,7 @@ namespace MyTherapy
         TextView lastINR;
         TextView nextAppointment;
         TextView daysLeftTextView;
-
+        Button buttonMap;
         private AppManager appManager; 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -44,13 +44,20 @@ namespace MyTherapy
             nextAppointment = FindViewById<TextView>(Resource.Id.textView6);
             daysLeftTextView = FindViewById<TextView>(Resource.Id.daysLeft);
 
+            buttonMap = FindViewById<Button>(Resource.Id.buttonMap);
+			buttonMap.Click += ButtonMap_Click;
             takeTherapyButton.Click += TakeTherapyButton_Click;
 
             appManager = new AppManager(this);
 			appManager.TherapyTaken += AppManager_TherapyTaken;       
         }
 
-		private void AppManager_TherapyTaken(object sender, EventArgs e)
+		private void ButtonMap_Click(object sender, EventArgs e)
+		{
+            StartActivity(typeof(MapActivity));
+        }
+
+        private void AppManager_TherapyTaken(object sender, EventArgs e)
 		{
             takeTherapyButton.Text = "Taken";
             takeTherapyButton.Enabled = false;

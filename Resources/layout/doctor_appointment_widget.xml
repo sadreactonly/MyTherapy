@@ -3,24 +3,24 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
- <RelativeLayout
+       <RelativeLayout
         android:minWidth="@dimen/min_dim"
         android:minHeight="@dimen/min_dim"
         android:layout_width="match_parent"
         android:layout_height="@dimen/widget_title_height"
         android:background="@color/colorPrimary"
         android:id="@+id/relativeLayout1">
-	<ImageView
+        	<ImageView
             android:id="@+id/widget_icon"
             android:contentDescription=""
             android:layout_marginLeft="@dimen/icon_margin"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:background="@drawable/medicine"
+            android:background="@drawable/calendar"
             android:layout_width="@dimen/notification_small_icon_size_as_large"
             android:layout_height="@dimen/notification_small_icon_size_as_large"/>
             <TextView
-            android:text="@string/last_sync"
+            android:text="@string/next_appointment"
             android:layout_marginLeft="@dimen/icon_margin"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/widget_icon"
@@ -31,22 +31,13 @@
             android:id="@+id/textView1" />
         </RelativeLayout>
 
-            <TextView
+		<TextView
                 android:text="@string/not_set"
-        		android:textSize="@dimen/abc_text_size_display_3_material"
-                android:layout_weight="5"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/relativeLayout1"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/daysLeft" />
-    <Button
-        android:text="See nearest pharmacies"
-        android:layout_below="@+id/daysLeft"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonMap" />
-
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/abc_text_size_display_3_material"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/textView6" />
 </RelativeLayout>

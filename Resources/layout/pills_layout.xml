@@ -10,12 +10,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/materialCardView1" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+             <RelativeLayout
+            android:minWidth="@dimen/min_dim"
+            android:minHeight="@dimen/min_dim"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_title_height"
+            android:background="@color/colorPrimary"
+            android:id="@+id/relativeLayout1">
+	            <ImageView
+                android:id="@+id/widget_icon"
+                android:contentDescription=""
+                android:layout_marginLeft="@dimen/icon_margin"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/medicine"
+                android:layout_width="@dimen/notification_small_icon_size_as_large"
+                android:layout_height="@dimen/notification_small_icon_size_as_large"/>
+                <TextView
+            android:text="Add pills buyment"
+            android:layout_marginLeft="@dimen/icon_margin"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/widget_icon"
+            android:textColor="@android:color/white"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1" />
+        </RelativeLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:minWidth="@dimen/min_dim"
             android:minHeight="@dimen/min_dim"
+            android:layout_below="@+id/relativeLayout1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/linearLayout1" >
 	      <EditText
 		      android:id="@+id/editText1"
@@ -28,7 +60,7 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="match_parent"
 	            android:layout_weight="1"
-				android:text="@string/inr_date_button"
+				android:text="@string/set_date"
 	            android:id="@+id/materialButton1" />
             <android.support.design.button.MaterialButton
                 android:layout_width="wrap_content"
@@ -37,12 +69,54 @@
                 android:layout_weight="1"
                 android:id="@+id/materialButton2" />
         </LinearLayout>
+    </RelativeLayout>
     </android.support.design.card.MaterialCardView>
-    <ListView
-        android:minWidth="@dimen/min_dim"
-        android:minHeight="@dimen/min_dim"
+    <android.support.design.card.MaterialCardView
+        android:minWidth="25px"
+        android:minHeight="25px"
+		android:layout_margin="25px"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listView1" />
+        android:layout_height="wrap_content"
+        android:id="@+id/materialCardView2" >
+       <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+          <RelativeLayout
+                android:minWidth="@dimen/min_dim"
+                android:minHeight="@dimen/min_dim"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_title_height"
+                android:background="@color/colorPrimary"
+                android:id="@+id/relativeLayout3">
+	                <ImageView
+                    android:id="@+id/widget_icon1"
+                    android:contentDescription=""
+                    android:layout_marginLeft="@dimen/icon_margin"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/medicine"
+                    android:layout_width="@dimen/notification_small_icon_size_as_large"
+                    android:layout_height="@dimen/notification_small_icon_size_as_large"/>
+                    <TextView
+                android:text="All pills buyments"
+                android:layout_marginLeft="@dimen/icon_margin"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/widget_icon1"
+                android:textColor="@android:color/white"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2" /> 
+            </RelativeLayout>
+           <ListView
+            android:minWidth="@dimen/min_dim"
+            android:minHeight="@dimen/min_dim" 
+            android:layout_below="@+id/relativeLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listView1" />
+        </RelativeLayout>
+
+     </android.support.design.card.MaterialCardView>
 
 </LinearLayout>

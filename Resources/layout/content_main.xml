@@ -18,12 +18,33 @@
             android:minWidth="@dimen/min_dim"
             android:minHeight="@dimen/min_dim"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/relativeLayout1">
-	        <include layout="@layout/therapy_card" />
-	        <include layout="@layout/inr_card" />
-	        <include layout="@layout/sync_card" />
-           
+
+               
+                <android.support.design.card.MaterialCardView
+		            android:minWidth="@dimen/min_dim"
+                    android:minHeight="@dimen/min_dim"
+		            android:layout_margin="30px"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/therapy_widget_height"
+                    android:id="@+id/materialCardView2"> 
+    	                    <include layout="@layout/therapy_card" />
+                </android.support.design.card.MaterialCardView>
+	               
+     
+                <include layout="@layout/inr_card" />
+
+                 <android.support.design.card.MaterialCardView
+		            android:minWidth="@dimen/min_dim"
+                    android:minHeight="@dimen/min_dim"
+		            android:layout_margin="30px"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/pills_widget_height"
+                    android:id="@+id/materialCardView1"> 
+	                    <include layout="@layout/sync_card" />
+                </android.support.design.card.MaterialCardView>
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

@@ -17,15 +17,33 @@
 			android:layout_width="match_parent"
 			android:layout_height="fill_parent"
 			android:id="@+id/linearLayout1" >
-			<TextView
-				android:gravity="center"
-				android:text="@string/all_therapies"
-				android:layout_marginTop="@dimen/abc_dropdownitem_text_padding_left"
-				android:layout_marginLeft="@dimen/abc_dropdownitem_text_padding_left"
-				android:textAppearance="?android:attr/textAppearanceMedium"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:id="@+id/textView3" />
+		 <RelativeLayout
+            android:minWidth="@dimen/min_dim"
+            android:minHeight="@dimen/min_dim"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_title_height"
+            android:background="@color/colorPrimary"
+            android:id="@+id/relativeLayout1">
+	        <ImageView
+            android:id="@+id/widget_icon"
+            android:contentDescription=""
+            android:layout_marginLeft="@dimen/icon_margin"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/medicine"
+            android:layout_width="@dimen/notification_small_icon_size_as_large"
+            android:layout_height="@dimen/notification_small_icon_size_as_large"/>
+            <TextView
+            android:text="@string/all_therapies"
+            android:layout_marginLeft="@dimen/icon_margin"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/widget_icon"
+            android:textColor="@android:color/white"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1" />
+        </RelativeLayout>
 			<ListView 
 				android:id="@+id/mainlistview" 
 				android:layout_height="match_parent" 

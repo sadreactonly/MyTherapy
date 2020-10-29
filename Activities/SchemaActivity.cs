@@ -8,12 +8,10 @@ using MyTherapy.Models;
 namespace MyTherapy
 {
 	[Activity(Label = "Create therapy schema", Theme = "@style/AppTheme")]
-
 	public class SchemaActivity : Activity
 	{
 		private AppManager appManager;
 		private List<float> dosage = new List<float>();
-		private List<DateTime> dates = new List<DateTime>();
 		private List<DailyTherapy> therapies = new List<DailyTherapy>();
 
 		private Button addButton;
@@ -65,23 +63,15 @@ namespace MyTherapy
 		/// </summary>
 		private void CreateScheme()
 		{
-
-			for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
-				dates.Add(date);
-
-			int x = dates.Count / dosage.Count + 1;
-
-			var newList = new List<float>();
-
-			for(int i = 0; i < x; i++)
+			int i = 0;
+			for (DateTime date = startDate; date <= endDate; date = date.AddDays(1), i++)
 			{
-				newList.AddRange(dosage);
-			}
+				if (i == dosage.Count)
+				{
+					i = 0;
+				}
 
-
-			for (int i=0; i < dates.Count; i++)
-			{
-				var therapy = new DailyTherapy() {Guid = Guid.NewGuid(), Date = dates[i], Dose = newList[i] };
+				var therapy = new DailyTherapy() { Guid = Guid.NewGuid(), Date = date, Dose = dosage[i]};
 				therapies.Add(therapy);
 			}
 
@@ -128,9 +118,8 @@ namespace MyTherapy
 
 		private void AddButton_Click(object sender, EventArgs e)
 		{
-			float.TryParse(spinner.SelectedItem.ToString(), out var dose);
 
-			if (dose >= 0)
+			if (float.TryParse(spinner.SelectedItem.ToString(), out var dose))
 			{
 				dosage.Add(dose);
 			}
