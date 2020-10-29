@@ -35,6 +35,7 @@
 			 android:layout_below="@+id/relativeLayout1"
              android:layout_width="match_parent"
              android:layout_height="wrap_content">
+       
 			<TextView
 				android:text="@string/not_set"
 				android:layout_centerHorizontal="true"

@@ -5,7 +5,7 @@
 		<string name="action_therapies">View all therapies</string>
 		<string name="action_inr">INR and appointments</string>
 		<string name="all_therapies">All therapies</string>
-		<string name="today_therapy">Today therapy</string>
+		<string name="today_therapy">Today\'s therapy</string>
 		<string name="take">Take</string>
 		<string name="taken">Taken</string>
 		<string name="last_sync">Pills left</string>
@@ -25,7 +25,8 @@
 		<string name="set_date">Set date</string>
 		<string name="list_item">{0}.</string>
 		<string name="pills_management">Pills management</string>
-	
+	<string name="notification_title">Don\'t forget to take your therapy!</string>
+	<string name="notification_message">Today\'s therapy is {0} pills.</string>
 	<string-array name="therapy_dosage_array">
 		<item>0</item>
 		<item>0.25</item>

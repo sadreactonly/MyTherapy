@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
@@ -15,6 +14,9 @@ using Android.Widget;
 using MyTherapy.Models;
 using Newtonsoft.Json;
 using MyTherapy.Activities;
+using Android.Content;
+using MyTherapy.Service;
+using Java.Util;
 
 namespace MyTherapy
 {
@@ -28,8 +30,10 @@ namespace MyTherapy
         TextView nextAppointment;
         TextView daysLeftTextView;
         MaterialButton buttonMap;
-        private AppManager appManager; 
+        private AppManager appManager;
 
+
+        Button alarmButton;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -52,7 +56,38 @@ namespace MyTherapy
             takeTherapyButton.Click += TakeTherapyButton_Click;
 
             appManager = new AppManager(this);
-			appManager.TherapyTaken += AppManager_TherapyTaken;       
+			appManager.TherapyTaken += AppManager_TherapyTaken;
+            var dateTime = DateTime.Now.Date;
+            TimeSpan ts = new TimeSpan(23, 0, 0);
+            dateTime = dateTime.Date + ts;
+            SetAlarms(dateTime);
+
+        }
+
+		private void SetAlarms(DateTime scheduleTime)
+		{
+            if (DateTime.Now > scheduleTime)
+            {
+                scheduleTime = scheduleTime.AddDays(1);
+            }
+            // For future reference: 
+            // https://nftb.saturdaymp.com/today-i-learned-how-to-create-a-local-notification-in-xamarin-android/
+            var utcTime = TimeZoneInfo.ConvertTimeToUtc(scheduleTime);
+            var epochDif = (new DateTime(1970, 1, 1) - DateTime.MinValue).TotalSeconds;
+            var notifyTimeInInMilliseconds = utcTime.AddSeconds(-epochDif).Ticks / 10000;
+
+            var alarmIntent = new Intent(this, typeof(TherapyReminderReciever));
+            alarmIntent.PutExtra("title", GetString(Resource.String.notification_title));
+            alarmIntent.PutExtra("message", GetString(Resource.String.notification_message));
+
+            var pending = PendingIntent.GetBroadcast(this, 0, alarmIntent, PendingIntentFlags.UpdateCurrent);
+
+            var alarmManager = GetSystemService(AlarmService).JavaCast<AlarmManager>();
+
+
+           
+            alarmManager.SetRepeating(AlarmType.RtcWakeup, notifyTimeInInMilliseconds, AlarmManager.IntervalDay, pending);
+           
         }
 
 		private void ButtonMap_Click(object sender, EventArgs e)

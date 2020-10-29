@@ -5169,71 +5169,77 @@ namespace MyTherapy
 			// aapt resource value: 0x7F0F0047
 			public const int next_appointment = 2131689543;
 			
+			// aapt resource value: 0x7F0F0049
+			public const int notification_message = 2131689545;
+			
+			// aapt resource value: 0x7F0F004A
+			public const int notification_title = 2131689546;
+			
 			// aapt resource value: 0x7F0F0048
 			public const int not_set = 2131689544;
 			
-			// aapt resource value: 0x7F0F0049
-			public const int password_toggle_content_description = 2131689545;
-			
-			// aapt resource value: 0x7F0F004A
-			public const int path_password_eye = 2131689546;
-			
 			// aapt resource value: 0x7F0F004B
-			public const int path_password_eye_mask_strike_through = 2131689547;
+			public const int password_toggle_content_description = 2131689547;
 			
 			// aapt resource value: 0x7F0F004C
-			public const int path_password_eye_mask_visible = 2131689548;
+			public const int path_password_eye = 2131689548;
 			
 			// aapt resource value: 0x7F0F004D
-			public const int path_password_strike_through = 2131689549;
+			public const int path_password_eye_mask_strike_through = 2131689549;
 			
 			// aapt resource value: 0x7F0F004E
-			public const int pills_left = 2131689550;
+			public const int path_password_eye_mask_visible = 2131689550;
 			
 			// aapt resource value: 0x7F0F004F
-			public const int pills_management = 2131689551;
+			public const int path_password_strike_through = 2131689551;
 			
 			// aapt resource value: 0x7F0F0050
-			public const int place_autocomplete_clear_button = 2131689552;
+			public const int pills_left = 2131689552;
 			
 			// aapt resource value: 0x7F0F0051
-			public const int place_autocomplete_search_hint = 2131689553;
+			public const int pills_management = 2131689553;
 			
 			// aapt resource value: 0x7F0F0052
-			public const int remove = 2131689554;
+			public const int place_autocomplete_clear_button = 2131689554;
 			
 			// aapt resource value: 0x7F0F0053
-			public const int save = 2131689555;
+			public const int place_autocomplete_search_hint = 2131689555;
 			
 			// aapt resource value: 0x7F0F0054
-			public const int search_menu_title = 2131689556;
+			public const int remove = 2131689556;
 			
 			// aapt resource value: 0x7F0F0055
-			public const int set_date = 2131689557;
+			public const int save = 2131689557;
 			
 			// aapt resource value: 0x7F0F0056
-			public const int set_end = 2131689558;
+			public const int search_menu_title = 2131689558;
 			
 			// aapt resource value: 0x7F0F0057
-			public const int set_start = 2131689559;
+			public const int set_date = 2131689559;
 			
 			// aapt resource value: 0x7F0F0058
-			public const int status_bar_notification_info_overflow = 2131689560;
+			public const int set_end = 2131689560;
 			
 			// aapt resource value: 0x7F0F0059
-			public const int sync = 2131689561;
+			public const int set_start = 2131689561;
 			
 			// aapt resource value: 0x7F0F005A
-			public const int take = 2131689562;
+			public const int status_bar_notification_info_overflow = 2131689562;
 			
 			// aapt resource value: 0x7F0F005B
-			public const int taken = 2131689563;
+			public const int sync = 2131689563;
 			
 			// aapt resource value: 0x7F0F005C
-			public const int today_therapy = 2131689564;
+			public const int take = 2131689564;
 			
 			// aapt resource value: 0x7F0F005D
-			public const int update = 2131689565;
+			public const int taken = 2131689565;
+			
+			// aapt resource value: 0x7F0F005E
+			public const int today_therapy = 2131689566;
+			
+			// aapt resource value: 0x7F0F005F
+			public const int update = 2131689567;
 			
 			static String()
 			{
