@@ -40,16 +40,12 @@ namespace MyTherapy.Repositories
 		public DoctorAppointment GetLastAppointment()
 		{
 			DoctorAppointment doctorAppointment = new DoctorAppointment();
-			var list = Get();
+			var list = Get(orderBy: x => x.Date);
 			list.Reverse();
-			foreach (var tmp in list)
+			foreach (var tmp in list.Where(x=>x.Date<=DateTime.Today))
 			{
-				if (tmp.INR != 0)
-				{
 					doctorAppointment = tmp;
 					break;
-				}
-
 			}
 
 			return doctorAppointment;
