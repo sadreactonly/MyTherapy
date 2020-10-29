@@ -50,19 +50,25 @@ namespace MyTherapy
 			
 		}
 
-		public void SetAllData(out string lastInrText, out string nextAppointmentText, out string todayTherapyTextText, out bool takeTherapyButtonEnabled, out string daysLeft)
+		public void SetAllData(out string lastInrText, out string inrDate, out string nextAppointmentText, out string todayTherapyTextText, out bool takeTherapyButtonEnabled, out string daysLeft)
 		{
-			var lastInr = appointmentRepository.GetLastAppointment().INR;
+			var lastInr = appointmentRepository.GetLastAppointment();
 			if (lastInr != null)
-				lastInrText = lastInr.ToString();
+			{
+				lastInrText = lastInr.INR.ToString();
+				inrDate = lastInr.Date.ToString("dd.MM.yyyy.");
+			}				
 			else
+			{
 				lastInrText = appContext.Resources.GetString(Resource.String.not_set);
+				inrDate = appContext.Resources.GetString(Resource.String.not_set);
+			}
 
 			var nextApp = appointmentRepository.GetNextAppointment().Date;
 			if(nextApp.Equals(DateTime.MinValue))
 				nextAppointmentText = appContext.Resources.GetString(Resource.String.not_set);
 			else
-			nextAppointmentText = nextApp.ToShortDateString();
+				nextAppointmentText = nextApp.ToString("dd.MM.yyyy.");
 
 			var todayTherapy = GetTodayTherapy();
 			todayTherapyTextText = todayTherapy !=null ? todayTherapy.Dose.ToString(CultureInfo.InvariantCulture): appContext.Resources.GetString(Resource.String.not_set);

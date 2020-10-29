@@ -2,7 +2,6 @@
 using Android.App;
 using Android.Views;
 using Android.Widget;
-using MyTherapy.Models;
 using Result = MyTherapy.Models.Result;
 
 namespace MyTherapy.Adapters
@@ -27,9 +26,9 @@ namespace MyTherapy.Adapters
 		public override View GetView(int position, View convertView, ViewGroup parent)
 		{
 			var item = items[position];
-			var view = convertView ?? context.LayoutInflater.Inflate(Resource.Layout.places_list_adapter, null);
+			var view = convertView ?? context.LayoutInflater.Inflate(Resource.Layout.list_item_place, null);
 
-			view.FindViewById<TextView>(Resource.Id.textView1).Text = (position + 1).ToString();
+			view.FindViewById<TextView>(Resource.Id.textView1).Text = string.Format(context.GetString(Resource.String.list_item), position + 1);
 			view.FindViewById<TextView>(Resource.Id.textView2).Text = item.name;
 			view.FindViewById<TextView>(Resource.Id.textView3).Text = item.vicinity;
 

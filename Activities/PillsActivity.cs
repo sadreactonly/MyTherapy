@@ -27,7 +27,7 @@ namespace MyTherapy
 
 		protected  override void OnCreate(Bundle savedInstanceState)
 		{
-			SetContentView(Resource.Layout.pills_layout);
+			SetContentView(Resource.Layout.manage_pills);
 			base.OnCreate(savedInstanceState);
 			db = new PillsRepository();
 			inrEditText = FindViewById<EditText>(Resource.Id.editText1);

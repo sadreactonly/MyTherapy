@@ -28,7 +28,7 @@ namespace MyTherapy
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			SetContentView(Resource.Layout.inr_layout);
+			SetContentView(Resource.Layout.manage_appointments);
 			base.OnCreate(savedInstanceState);
 
 			inrEditText = FindViewById<EditText>(Resource.Id.editText1);

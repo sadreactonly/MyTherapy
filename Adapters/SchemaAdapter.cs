@@ -26,8 +26,8 @@ namespace MyTherapy
 		public override View GetView(int position, View convertView, ViewGroup parent)
 		{
 			var item = items[position];
-			var view = convertView ?? context.LayoutInflater.Inflate(Resource.Layout.schema_list_item, null);
-			view.FindViewById<TextView>(Resource.Id.Text1).Text = item.Date.ToShortDateString();
+			var view = convertView ?? context.LayoutInflater.Inflate(Resource.Layout.list_item_schematic, null);
+			view.FindViewById<TextView>(Resource.Id.Text1).Text = item.Date.ToString("dd.MM.yyyy.");
 			view.FindViewById<TextView>(Resource.Id.Text2).Text = item.Dose.ToString();
 			view.FindViewById<TextView>(Resource.Id.Text3).Text = item.IsTaken ? "Taken." : "Not taken.";
 

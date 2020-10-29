@@ -26,8 +26,9 @@ namespace MyTherapy.Adapters
 		public override View GetView(int position, View convertView, ViewGroup parent)
 		{
 			var item = items[position];
-			var view = convertView ?? context.LayoutInflater.Inflate(Resource.Layout.doctor_appointments_list, null);
-			view.FindViewById<TextView>(Resource.Id.Text1).Text = item.Date.ToShortDateString();
+			var view = convertView ?? context.LayoutInflater.Inflate(Resource.Layout.list_item_appointment, null);
+			view.FindViewById<TextView>(Resource.Id.textView1).Text = string.Format(context.GetString(Resource.String.list_item), position + 1);
+			view.FindViewById<TextView>(Resource.Id.Text1).Text = item.Date.ToString("dd.MM.yyyy.");
 			view.FindViewById<TextView>(Resource.Id.Text2).Text = item.INR.ToString();
 
 			return view;

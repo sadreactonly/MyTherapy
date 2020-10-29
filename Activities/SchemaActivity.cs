@@ -28,7 +28,7 @@ namespace MyTherapy
 		{
 			base.OnCreate(savedInstanceState);
 
-			SetContentView(Resource.Layout.therapy_schema_layout);
+			SetContentView(Resource.Layout.manage_schematic);
 
 			addButton = FindViewById<Button>(Resource.Id.btnAdd);
 			addButton = FindViewById<Button>(Resource.Id.btnAdd);

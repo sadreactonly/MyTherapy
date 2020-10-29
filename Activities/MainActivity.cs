@@ -24,9 +24,10 @@ namespace MyTherapy
         TextView todayTherapyText;
         MaterialButton takeTherapyButton;
         TextView lastINR;
+        TextView lastINRDate;
         TextView nextAppointment;
         TextView daysLeftTextView;
-        Button buttonMap;
+        MaterialButton buttonMap;
         private AppManager appManager; 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -41,10 +42,12 @@ namespace MyTherapy
             todayTherapyText = FindViewById<TextView>(Resource.Id.textView2);
             takeTherapyButton = FindViewById<MaterialButton>(Resource.Id.materialButton1);
             lastINR = FindViewById<TextView>(Resource.Id.textView5);
+            lastINRDate = FindViewById<TextView>(Resource.Id.textViewInrDate);
+
             nextAppointment = FindViewById<TextView>(Resource.Id.textView6);
             daysLeftTextView = FindViewById<TextView>(Resource.Id.daysLeft);
 
-            buttonMap = FindViewById<Button>(Resource.Id.buttonMap);
+            buttonMap = FindViewById<MaterialButton>(Resource.Id.materialButtonMap);
 			buttonMap.Click += ButtonMap_Click;
             takeTherapyButton.Click += TakeTherapyButton_Click;
 
@@ -99,9 +102,10 @@ namespace MyTherapy
 
         protected override void OnResume()
         {
-			appManager.SetAllData(out string lastInrText, out string nextAppointmentText, out string todayTherapyTextText, out bool takeTherapyButtonEnabled, out string daysLeft);
+			appManager.SetAllData(out string lastInrText, out string inrDate, out string nextAppointmentText, out string todayTherapyTextText, out bool takeTherapyButtonEnabled, out string daysLeft);
 
 			lastINR.Text = lastInrText;
+            lastINRDate.Text = inrDate;
             nextAppointment.Text = nextAppointmentText;
             todayTherapyText.Text = todayTherapyTextText;
             takeTherapyButton.Enabled = !takeTherapyButtonEnabled;

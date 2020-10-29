@@ -17,7 +17,7 @@ namespace MyTherapy.Activities
 
         protected override void OnCreate(Bundle savedInstanceState)
 		{
-			SetContentView(Resource.Layout.therapies_list_card);
+			SetContentView(Resource.Layout.manage_therapies);
 			base.OnCreate(savedInstanceState);
 
 			listView = FindViewById<ListView>(Resource.Id.mainlistview);

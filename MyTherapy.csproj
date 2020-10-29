@@ -93,6 +93,7 @@
     <Compile Include="Adapters\SchemaAdapter.cs" />
     <Compile Include="Service\GoogleMapsApiService.cs" />
     <Compile Include="Service\IGoogleMapsApiService.cs" />
+    <Compile Include="Service\TherapyReminderReciever.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -164,12 +165,12 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\therapy_schema_layout.xml">
+    <AndroidResource Include="Resources\layout\manage_schematic.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\schema_list_item.xml">
+    <AndroidResource Include="Resources\layout\list_item_schematic.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -180,32 +181,32 @@
     <AndroidResource Include="Resources\drawable\baseline_add_white_18dp.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\therapy_card.xml">
+    <AndroidResource Include="Resources\layout\widget_therapy.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\inr_card.xml">
+    <AndroidResource Include="Resources\layout\widget_appointments.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\sync_card.xml">
+    <AndroidResource Include="Resources\layout\widget_pills.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\therapies_list_card.xml">
+    <AndroidResource Include="Resources\layout\manage_therapies.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\inr_layout.xml">
+    <AndroidResource Include="Resources\layout\manage_appointments.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\doctor_appointments_list.xml">
+    <AndroidResource Include="Resources\layout\list_item_appointment.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -219,7 +220,7 @@
     <AndroidResource Include="Resources\drawable\hand.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\pills_layout.xml">
+    <AndroidResource Include="Resources\layout\manage_pills.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -230,12 +231,12 @@
     <AndroidResource Include="Resources\drawable\blood.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\inr_widget.xml">
+    <AndroidResource Include="Resources\layout\widget_inr.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\doctor_appointment_widget.xml">
+    <AndroidResource Include="Resources\layout\widget_next_appointment.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -248,9 +249,23 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\places_list_adapter.xml">
+    <AndroidResource Include="Resources\layout\list_item_place.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\list_item_pills.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_search.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\take.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

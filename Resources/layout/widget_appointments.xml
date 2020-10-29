@@ -10,7 +10,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="150dp"
 		android:id="@+id/materialCardView3" >
-		            <include layout="@layout/inr_widget" />
+		            <include layout="@layout/widget_inr" />
 
 	</android.support.design.card.MaterialCardView>
 
@@ -21,7 +21,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="150dp"
 		android:id="@+id/materialCardView4" >
-			            <include layout="@layout/doctor_appointment_widget" />
+			            <include layout="@layout/widget_next_appointment" />
 
 	</android.support.design.card.MaterialCardView>
 </LinearLayout>

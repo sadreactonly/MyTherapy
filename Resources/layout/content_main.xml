@@ -29,11 +29,11 @@
 		            android:layout_width="match_parent"
 		            android:layout_height="@dimen/therapy_widget_height"
                     android:id="@+id/materialCardView2"> 
-    	                    <include layout="@layout/therapy_card" />
+    	                    <include layout="@layout/widget_therapy" />
                 </android.support.design.card.MaterialCardView>
 	               
      
-                <include layout="@layout/inr_card" />
+                <include layout="@layout/widget_appointments" />
 
                  <android.support.design.card.MaterialCardView
 		            android:minWidth="@dimen/min_dim"
@@ -42,7 +42,7 @@
 		            android:layout_width="match_parent"
 		            android:layout_height="@dimen/pills_widget_height"
                     android:id="@+id/materialCardView1"> 
-	                    <include layout="@layout/sync_card" />
+	                    <include layout="@layout/widget_pills" />
                 </android.support.design.card.MaterialCardView>
 
         </LinearLayout>
