@@ -15,6 +15,7 @@ using MyTherapy.Service;
 using System.Threading.Tasks;
 using Android.Gms.Maps.Model;
 using Xamarin.Essentials;
+using MyTherapy.Helpers;
 
 namespace MyTherapy.Activities
 {
@@ -22,7 +23,6 @@ namespace MyTherapy.Activities
     public class MapActivity : Activity, IOnMapReadyCallback
     {
 
-        private const string ApiKey = "AIzaSyAxIEoh0pEXqOh8J1HDGre76kdnNkWdpVA";
         private ListView placeList;
         private PlaceAdapter adapter;
         private List<Result> results = new List<Result>();
@@ -39,7 +39,7 @@ namespace MyTherapy.Activities
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.mapLayout);
-            GoogleMapsApiService.Initialize(ApiKey);
+            GoogleMapsApiService.Initialize();
 
             var mapFragment = FragmentManager.FindFragmentById<MapFragment>(Resource.Id.fragment1);
             mapFragment.GetMapAsync(this);
@@ -49,7 +49,7 @@ namespace MyTherapy.Activities
 			placeList.ItemClick += PlaceList_ItemClick;
         }
 
-		private void PlaceList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+		private async void PlaceList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
             markers.ForEach(x => x.Remove());
             var currentPlace = results[e.Position];
@@ -59,9 +59,15 @@ namespace MyTherapy.Activities
             markers.Add(AddMarker(googleMap, clickedPosition, currentPlace.name));
 
             googleMap.MoveCamera(GetCameraOptions(clickedPosition));
+            var gmapsService = new GoogleMapsApiService();
+
+            var response = await gmapsService.GetRoutes(location.Latitude, location.Longitude,clickedPosition.Latitude, clickedPosition.Longitude);
+
+            GoogleMapHelper.DrawRoutes(this, googleMap, response.routes[0].overview_polyline.points);
+
         }
 
-		public async void OnMapReady(GoogleMap map)
+        public async void OnMapReady(GoogleMap map)
         {
             var request = new GeolocationRequest(GeolocationAccuracy.High);
             location = await Geolocation.GetLocationAsync(request);
@@ -76,7 +82,7 @@ namespace MyTherapy.Activities
 
             // Get places
             var gmapsService = new GoogleMapsApiService();
-            var response = await gmapsService.GetPlaceDetails(location.Latitude, location.Longitude);
+            var response = await gmapsService.GetPlaces(location.Latitude, location.Longitude);
 
             if (response.status == "OK")
             {

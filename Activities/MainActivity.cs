@@ -33,7 +33,6 @@ namespace MyTherapy
         private AppManager appManager;
 
 
-        Button alarmButton;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -58,7 +57,7 @@ namespace MyTherapy
             appManager = new AppManager(this);
 			appManager.TherapyTaken += AppManager_TherapyTaken;
             var dateTime = DateTime.Now.Date;
-            TimeSpan ts = new TimeSpan(23, 0, 0);
+            TimeSpan ts = new TimeSpan(20, 0, 0);
             dateTime = dateTime.Date + ts;
             SetAlarms(dateTime);
 
@@ -86,7 +85,7 @@ namespace MyTherapy
 
 
            
-            alarmManager.SetRepeating(AlarmType.RtcWakeup, notifyTimeInInMilliseconds, AlarmManager.IntervalDay, pending);
+            alarmManager.SetInexactRepeating(AlarmType.RtcWakeup, notifyTimeInInMilliseconds, AlarmManager.IntervalDay, pending);
            
         }
 

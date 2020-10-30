@@ -2,7 +2,7 @@
     <dimen name="fab_margin">16dp</dimen>
 	<dimen name="min_dim">25px</dimen>
 	<dimen name="widget_title_height">30dp</dimen>
-	<dimen name="therapy_widget_height">200dp</dimen>
+	<dimen name="therapy_widget_height">160dp</dimen>
 	<dimen name="pills_widget_height">150dp</dimen>
 	<dimen name="inr_widget_height">200dp</dimen>
 	<dimen name="icon_margin">10dp</dimen>

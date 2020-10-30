@@ -76,7 +76,9 @@
     <Compile Include="Adapters\PlaceAdapter.cs" />
     <Compile Include="AppManager.cs" />
     <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Helpers\GoogleMapHelper.cs" />
     <Compile Include="Helpers\HelpersMethods.cs" />
+    <Compile Include="Models\GoogleDirection.cs" />
     <Compile Include="Models\GooglePlace.cs" />
     <Compile Include="Repositories\Common\IRepository.cs" />
     <Compile Include="Models\DailyTherapy.cs" />
