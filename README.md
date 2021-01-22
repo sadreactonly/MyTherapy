@@ -9,6 +9,8 @@
 - Daily notification reminder
 - Widget
 
+![preview](https://github.com/sadreactonly/MyTherapy/blob/main/image_preview.png?raw=true)
+
 
 
 
