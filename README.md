@@ -1,5 +1,5 @@
 # MyTherapy
- Android application for managing my therapy
+ Android application for managing my anticoagulants therapy.
 
 ## Features:
 - Managing therapy (add, edit and delete daily therapy)
